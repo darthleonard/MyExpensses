@@ -17,7 +17,11 @@ const routes: Routes = [
   },
   {
     path: 'pantry',
-    loadChildren: () => import('./pages/pantry/pantry.module').then( m => m.PantryPageModule)
+    loadChildren: () => import('./pages/pantry/pantry-tabs/pantry-tabs.module').then( m => m.PantryTabsPageModule)
+  },
+  {
+    path: 'markets',
+    loadChildren: () => import('./pages/pantry/markets/markets.module').then( m => m.MarketsPageModule)
   }
 ];
 
