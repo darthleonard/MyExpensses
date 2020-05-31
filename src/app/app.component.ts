@@ -15,7 +15,12 @@ export class AppComponent {
     {
       title: 'Main',
       url: 'main',
-      icon: 'alarm'
+      icon: 'bar-chart'
+    },
+    {
+      title: 'House',
+      url: 'house',
+      icon: 'home'
     },
     {
       title: 'Pantry',

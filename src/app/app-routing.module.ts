@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'markets',
     loadChildren: () => import('./pages/pantry/markets/markets.module').then( m => m.MarketsPageModule)
+  },
+  {
+    path: 'house',
+    loadChildren: () => import('./pages/house/house.module').then( m => m.HousePageModule)
   }
 ];
 
