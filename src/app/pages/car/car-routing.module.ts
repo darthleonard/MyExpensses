@@ -7,7 +7,15 @@ const routes: Routes = [
   {
     path: '',
     component: CarPage
-  }
+  },
+  {
+    path: 'car-detail',
+    loadChildren: () => import('./car-detail/car-detail.module').then( m => m.CarDetailPageModule)
+  },
+  // {
+  //   path: 'car-detail/:record',
+  //   loadChildren: () => import('./car-detail/car-detail.module').then( m => m.CarDetailPageModule)
+  // }
 ];
 
 @NgModule({

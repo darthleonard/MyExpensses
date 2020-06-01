@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ record.ConsumptionDate | date }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Date</ion-label>
+    <ion-datetime display-format="DD/MMMM/YYYY" [(ngModel)]="record.ConsumptionDate"  name="ConsumptionDate"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Price</ion-label>
+    <ion-input type="number" [(ngModel)]="record.Price" name="Price"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Quantity</ion-label>
+    <ion-input type="number" [(ngModel)]="record.Quantity" name="Quantity"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Distance</ion-label>
+    <ion-input type="number" [(ngModel)]="record.Distance" name="Distance"></ion-input>
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngIf="!isNew">
+        <ion-button color="danger" expand="block" (click)="delete()">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="success" expand="block" (click)="save()">
+          <ion-icon name="save-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

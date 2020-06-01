@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CarRecord } from '../../models/car-record.model';
-
 
 @Component({
   selector: 'app-car',
@@ -9,17 +9,14 @@ import { CarRecord } from '../../models/car-record.model';
 })
 export class CarPage implements OnInit {
   records: CarRecord[] = [];
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+
   }
 
-  add() {
-    console.log('open new page');
-  }
-
-  edit(record: any) {
-    console.log(record);
+  stringify(record) {
+    return JSON.stringify(record);
   }
 
   doRefresh(event) {
