@@ -15,7 +15,7 @@ export class CarDetailPage implements OnInit {
 
   ngOnInit() {
     if (this.activatedRoute.snapshot.params.record) {
-      this.record = (JSON.parse(this.activatedRoute.snapshot.params.record));;
+      this.record = (JSON.parse(this.activatedRoute.snapshot.params.record));
     } else {
       this.record = new CarRecord();
       this.isNew = true;
