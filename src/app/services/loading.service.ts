@@ -23,6 +23,12 @@ export class LoadingService {
 
   async dismiss() {
     this.isLoading = false;
+    setTimeout(() => {
+      return this.dismissLoading();
+    }, 5);
+  }
+
+  private async dismissLoading() {
     return await this.loadingController.dismiss();
   }
 }
