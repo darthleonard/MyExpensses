@@ -25,7 +25,7 @@ export class LoadingService {
     this.isLoading = false;
     setTimeout(() => {
       return this.dismissLoading();
-    }, 5);
+    }, 10);
   }
 
   private async dismissLoading() {

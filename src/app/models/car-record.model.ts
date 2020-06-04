@@ -10,7 +10,7 @@ export class CarRecord extends BaseRecord {
         const data = JSON.parse(json);
         this.Id = data.Id;
         this.CreationDate = data.CreationDate;
-        this.LasModDate = data.LasModDate;
+        this.LastModDate = data.LastModDate;
         this.ConsumptionDate = data.ConsumptionDate;
         this.Price = data.Price;
         this.Quantity = data.Quantity;

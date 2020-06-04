@@ -3,7 +3,11 @@ import { Storage } from '@ionic/storage';
 export class BaseRecord {
     Id: string;
     CreationDate: Date;
-    LasModDate: Date;
+    LastModDate: Date;
+
+    isNew() {
+        return this.Id === undefined;
+    }
 
     save(storage: Storage) {
         if (this.Id === undefined) {
@@ -13,7 +17,11 @@ export class BaseRecord {
         }
     }
 
-    saveNew(storage: Storage) {
+    delete(storage: Storage) {
+        storage.remove(this.Id.toString());
+    }
+
+    private saveNew(storage: Storage) {
         storage.get('counter').then(v => {
             const idx = (v === null ? 1 : v + 1);
             this.Id = `${this.constructor.name}${idx}`;
@@ -23,16 +31,8 @@ export class BaseRecord {
         });
     }
 
-    delete(storage: Storage) {
-        storage.remove(this.Id.toString());
-    }
-
-    isNew() {
-        return this.Id === undefined;
-    }
-
     private saveStorage(storage: Storage) {
-        this.LasModDate = new Date();
+        this.LastModDate = new Date();
         storage.set(this.Id.toString(), JSON.stringify(this));
     }
 }
