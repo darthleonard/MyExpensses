@@ -1,5 +1,7 @@
 {
   "name": "MyExpensses",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

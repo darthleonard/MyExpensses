@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Storage } from '@ionic/storage';
+import { Location } from '@angular/common';
 import { CarRecord } from '../../../models/car-record.model';
-
 
 @Component({
   selector: 'app-car-detail',
@@ -11,7 +12,10 @@ import { CarRecord } from '../../../models/car-record.model';
 export class CarDetailPage implements OnInit {
   record: CarRecord;
   isNew: boolean;
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private storage: Storage,
+    private location: Location) { }
 
   ngOnInit() {
     if (this.activatedRoute.snapshot.params.record) {
@@ -23,14 +27,12 @@ export class CarDetailPage implements OnInit {
   }
 
   save() {
-    if (this.isNew) {
-      console.log('save record');
-    } else {
-      console.log('update record');
-    }
+    this.record.save(this.storage);
+    this.location.back();
   }
 
   delete() {
-    console.log('delete record');
+    this.record.delete(this.storage);
+    this.location.back();
   }
 }
