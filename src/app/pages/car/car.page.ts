@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { CarRecord } from '../../models/car-record.model';
 import { LoadingService } from '../../services/loading.service';
@@ -9,15 +8,20 @@ import { LoadingService } from '../../services/loading.service';
   templateUrl: './car.page.html',
   styleUrls: ['./car.page.scss'],
 })
-export class CarPage implements OnInit {
+export class CarPage {
   records: CarRecord[] = [];
-  constructor(private router: Router, private storage: Storage, private loading: LoadingService) { }
 
-  ngOnInit() {
+  constructor(private storage: Storage, private loading: LoadingService) { }
+
+  ionViewWillEnter() {
     this.loading.present();
     this.loadRecords()
       .then(() => this.loading.dismiss()
     );
+  }
+
+  doRefresh(event) {
+    this.loadRecords().then(x => event.target.complete());
   }
 
   stringify(record) {
@@ -35,10 +39,6 @@ export class CarPage implements OnInit {
         resolve();
       });
     });
-  }
-
-  doRefresh(event) {
-    this.loadRecords().then(x => event.target.complete());
   }
 
 }

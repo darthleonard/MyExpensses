@@ -12,18 +12,18 @@ import { CarRecord } from '../../../models/car-record.model';
 export class CarDetailPage implements OnInit {
   record: CarRecord;
   isNew: boolean;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private storage: Storage,
     private location: Location) { }
 
   ngOnInit() {
+    this.record = new CarRecord();
     if (this.activatedRoute.snapshot.params.record) {
-      this.record = (JSON.parse(this.activatedRoute.snapshot.params.record));
-    } else {
-      this.record = new CarRecord();
-      this.isNew = true;
+      this.record.load(this.activatedRoute.snapshot.params.record);
     }
+    this.isNew = this.record.isNew();
   }
 
   save() {
