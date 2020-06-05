@@ -17,9 +17,6 @@ export class HousePage {
     this.loadRecords()
       .then(() => this.loading.dismiss()
     );
-    const aux = new HouseRecord();
-    aux.Electricity = 10;
-    this.records.push(aux);
   }
 
   doRefresh(event) {

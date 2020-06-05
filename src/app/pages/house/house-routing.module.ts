@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: HousePage
+  },
+  {
+    path: 'house-detail',
+    loadChildren: () => import('./house-detail/house-detail.module').then( m => m.HouseDetailPageModule)
   }
 ];
 
