@@ -2,30 +2,18 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { CarRecord } from '../../models/car-record.model';
 import { LoadingService } from '../../services/loading.service';
+import { BasePage } from '../base/base.page';
 
 @Component({
   selector: 'app-car',
   templateUrl: './car.page.html',
   styleUrls: ['./car.page.scss'],
 })
-export class CarPage {
+export class CarPage extends BasePage {
   records: CarRecord[] = [];
 
-  constructor(private storage: Storage, private loading: LoadingService) { }
-
-  ionViewWillEnter() {
-    this.loading.present();
-    this.loadRecords()
-      .then(() => this.loading.dismiss()
-    );
-  }
-
-  doRefresh(event) {
-    this.loadRecords().then(x => event.target.complete());
-  }
-
-  stringify(record) {
-    return JSON.stringify(record);
+  constructor(public storage: Storage, public loading: LoadingService) {
+    super(storage, loading);
   }
 
   loadRecords() {
