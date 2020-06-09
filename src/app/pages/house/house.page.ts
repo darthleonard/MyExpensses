@@ -2,29 +2,18 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { HouseRecord } from 'src/app/models/house-record';
 import { LoadingService } from '../../services/loading.service';
+import { BasePage } from '../base/base.page';
 
 @Component({
   selector: 'app-house',
   templateUrl: './house.page.html',
   styleUrls: ['./house.page.scss'],
 })
-export class HousePage {
+export class HousePage extends BasePage{
   records: HouseRecord[] = [];
-  constructor(private storage: Storage, private loading: LoadingService) { }
 
-  ionViewWillEnter() {
-    this.loading.present();
-    this.loadRecords()
-      .then(() => this.loading.dismiss()
-    );
-  }
-
-  doRefresh(event) {
-    this.loadRecords().then(x => event.target.complete());
-  }
-
-  stringify(record) {
-    return JSON.stringify(record);
+  constructor(public storage: Storage, public loading: LoadingService) {
+    super(storage, loading);
   }
 
   loadRecords() {
