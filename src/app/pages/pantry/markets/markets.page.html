@@ -3,10 +3,28 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>markets</ion-title>
+    <ion-title>Markets</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  list of markets
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  <div class="ion-text-center ion-padding-top" *ngIf="records.length == 0">
+    No records found
+  </div>
+  
+  <ion-list *ngIf="records.length > 0">
+      <ion-item *ngFor="let record of records" [routerLink]="['./market-detail', {record: stringify(record)}]">
+        <ion-label>Quantity: {{ record.Id }}</ion-label>
+      </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" [routerLink]="['./market-detail']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

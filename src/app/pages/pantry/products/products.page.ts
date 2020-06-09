@@ -1,15 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage';
+import { LoadingService } from '../../../services/loading.service';
+import { ProductRecord } from 'src/app/models/product-record.model';
+import { BasePage } from '../../base/base.page';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.page.html',
   styleUrls: ['./products.page.scss'],
 })
-export class ProductsPage implements OnInit {
+export class ProductsPage extends BasePage {
+  records: ProductRecord[] = [];
 
-  constructor() { }
+  constructor(public storage: Storage, public loading: LoadingService) {
+    super(storage, loading);
+  }
 
-  ngOnInit() {
+  loadRecords() {
+    // tslint:disable-next-line: no-shadowed-variable
+    return new Promise((resolve) => {
+      this.records = [];
+      this.storage.forEach((value, key, index) => {
+        if (key.indexOf('ProductRecord') >= 0) {
+          this.records.push(JSON.parse(value));
+        }
+        resolve();
+      });
+    });
   }
 
 }
