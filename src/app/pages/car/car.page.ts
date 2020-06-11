@@ -24,8 +24,8 @@ export class CarPage extends BasePage {
         if (key.indexOf('CarRecord') >= 0) {
           this.records.push(JSON.parse(value));
         }
-        resolve();
       });
+      resolve();
     });
   }
 

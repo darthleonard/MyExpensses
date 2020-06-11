@@ -24,8 +24,8 @@ export class HousePage extends BasePage{
         if (key.indexOf('HouseRecord') >= 0) {
           this.records.push(JSON.parse(value));
         }
-        resolve();
       });
+      resolve();
     });
   }
 }

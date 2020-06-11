@@ -12,9 +12,7 @@ export class BasePage {
 
   ionViewWillEnter() {
     this.loading.present();
-    this.loadRecords()
-      .then(() => this.loading.dismiss()
-    );
+    this.loadRecords().then(() => this.loading.dismiss());
   }
 
   stringify(record) {
