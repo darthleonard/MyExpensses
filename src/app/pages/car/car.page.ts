@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { CarRecord } from '../../models/car-record.model';
 import { LoadingService } from '../../services/loading.service';
-import { BasePage } from '../base/base.page';
+import { BaseListPage } from '../base/base-list.page';
 
 @Component({
   selector: 'app-car',
   templateUrl: './car.page.html',
   styleUrls: ['./car.page.scss'],
 })
-export class CarPage extends BasePage {
+export class CarPage extends BaseListPage {
   records: CarRecord[] = [];
 
   constructor(public storage: Storage, public loading: LoadingService) {

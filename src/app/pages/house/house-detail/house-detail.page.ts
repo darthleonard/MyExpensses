@@ -3,14 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { Location } from '@angular/common';
 import { HouseRecord } from 'src/app/models/house-record';
-import { RecordDetailPage } from '../../base/record-detail.page';
+import { BaseDetailPage } from '../../base/base-detail.page';
 
 @Component({
   selector: 'app-house-detail',
   templateUrl: './house-detail.page.html',
   styleUrls: ['./house-detail.page.scss'],
 })
-export class HouseDetailPage extends RecordDetailPage {
+export class HouseDetailPage extends BaseDetailPage {
 
   constructor(
     public activatedRoute: ActivatedRoute,

@@ -1,7 +1,7 @@
 import { Storage } from '@ionic/storage';
 import { LoadingService } from '../../services/loading.service';
 
-export abstract class BasePage {
+export abstract class BaseListPage {
 
   constructor(public storage: Storage, public loading: LoadingService) { }
 

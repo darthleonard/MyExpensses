@@ -2,7 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { Location } from '@angular/common';
 
-export abstract class RecordDetailPage {
+export abstract class BaseDetailPage {
   record: any;
   isNew: boolean;
 

@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { HouseRecord } from 'src/app/models/house-record';
 import { LoadingService } from '../../services/loading.service';
-import { BasePage } from '../base/base.page';
+import { BaseListPage } from '../base/base-list.page';
 
 @Component({
   selector: 'app-house',
   templateUrl: './house.page.html',
   styleUrls: ['./house.page.scss'],
 })
-export class HousePage extends BasePage {
+export class HousePage extends BaseListPage {
   records: HouseRecord[] = [];
 
   constructor(public storage: Storage, public loading: LoadingService) {

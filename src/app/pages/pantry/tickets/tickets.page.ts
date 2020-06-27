@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { LoadingService } from '../../../services/loading.service';
 import { TicketRecord } from 'src/app/models/ticket-record.model';
-import { BasePage } from '../../base/base.page';
+import { BaseListPage } from '../../base/base-list.page';
 
 @Component({
   selector: 'app-tickets',
   templateUrl: './tickets.page.html',
   styleUrls: ['./tickets.page.scss'],
 })
-export class TicketsPage extends BasePage {
+export class TicketsPage extends BaseListPage {
   records: TicketRecord[] = [];
 
   constructor(public storage: Storage, public loading: LoadingService) {

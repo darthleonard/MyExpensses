@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { LoadingService } from '../../../services/loading.service';
 import { MarketRecord } from 'src/app/models/market-record.model';
-import { BasePage } from '../../base/base.page';
+import { BaseListPage } from '../../base/base-list.page';
 
 @Component({
   selector: 'app-markets',
   templateUrl: './markets.page.html',
   styleUrls: ['./markets.page.scss'],
 })
-export class MarketsPage extends BasePage {
+export class MarketsPage extends BaseListPage {
   records: MarketRecord[] = [];
 
   constructor(public storage: Storage, public loading: LoadingService) {
