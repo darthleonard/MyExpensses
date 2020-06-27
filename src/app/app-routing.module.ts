@@ -26,10 +26,6 @@ const routes: Routes = [
   {
     path: 'house',
     loadChildren: () => import('./pages/house/house.module').then( m => m.HousePageModule)
-  },
-  {
-    path: 'base',
-    loadChildren: () => import('./pages/base/base.module').then( m => m.BasePageModule)
   }
 ];
 

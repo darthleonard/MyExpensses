@@ -1,11 +1,6 @@
-import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { LoadingService } from '../../services/loading.service';
 
-@Component({
-  selector: 'app-base',
-  template: ''
-})
 export class BasePage {
 
   constructor(public storage: Storage, public loading: LoadingService) { }
