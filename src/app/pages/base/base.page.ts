@@ -7,7 +7,9 @@ export abstract class BasePage {
 
   ionViewWillEnter() {
     this.loading.present();
-    this.loadRecords().then(() => this.loading.dismiss());
+    this.loadRecords()
+      .then(() => this.loading.dismiss())
+      .catch(err => {}); // Handle Error: "Uncaught (in promise): overlay does not exist"
   }
 
   stringify(record) {
