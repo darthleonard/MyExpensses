@@ -11,14 +11,14 @@ export class LoadingService {
 
   async present() {
     this.isLoading = true;
-    return await this.loadingController.create({
-    }).then(a => {
-      a.present().then(() => {
-        if (!this.isLoading) {
-          a.dismiss();
-        }
+    return await this.loadingController.create()
+      .then(a => {
+        a.present().then(() => {
+          if (!this.isLoading) {
+            a.dismiss();
+          }
+        });
       });
-    });
   }
 
   async dismiss() {
