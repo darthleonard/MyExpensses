@@ -16,7 +16,7 @@ export class CarPage extends BasePage {
     super(storage, loading);
   }
 
-  loadRecords() {
+  loadRecords(): Promise<boolean> {
     // tslint:disable-next-line: no-shadowed-variable
     return new Promise((resolve) => {
       this.records = [];

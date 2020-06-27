@@ -9,14 +9,14 @@ import { BasePage } from '../base/base.page';
   templateUrl: './house.page.html',
   styleUrls: ['./house.page.scss'],
 })
-export class HousePage extends BasePage{
+export class HousePage extends BasePage {
   records: HouseRecord[] = [];
 
   constructor(public storage: Storage, public loading: LoadingService) {
     super(storage, loading);
   }
 
-  loadRecords() {
+  loadRecords(): Promise<boolean> {
     // tslint:disable-next-line: no-shadowed-variable
     return new Promise((resolve) => {
       this.records = [];

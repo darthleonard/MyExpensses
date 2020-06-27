@@ -1,7 +1,7 @@
 import { Storage } from '@ionic/storage';
 import { LoadingService } from '../../services/loading.service';
 
-export class BasePage {
+export abstract class BasePage {
 
   constructor(public storage: Storage, public loading: LoadingService) { }
 
@@ -18,7 +18,5 @@ export class BasePage {
     this.loadRecords().then(x => event.target.complete());
   }
 
-  loadRecords() {
-    return new Promise((resolve) => resolve());
-  }
+  abstract loadRecords(): Promise<boolean>;
 }
