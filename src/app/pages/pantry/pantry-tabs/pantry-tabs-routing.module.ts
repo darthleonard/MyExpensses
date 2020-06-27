@@ -18,6 +18,10 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'ticket-detail',
+        loadChildren: () => import('../tickets/ticket-detail/ticket-detail.module').then( m => m.TicketDetailPageModule)
+      },
+      {
         path: 'products',
         children: [
           {
@@ -27,6 +31,10 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'product-detail',
+        loadChildren: () => import('../products/product-detail/product-detail.module').then( m => m.ProductDetailPageModule)
+      },
+      {
         path: 'markets',
         children: [
           {
@@ -34,6 +42,10 @@ const routes: Routes = [
             loadChildren: () => import('../markets/markets.module').then( m => m.MarketsPageModule)
           }
         ]
+      },
+      {
+        path: 'market-detail',
+        loadChildren: () => import('../markets/market-detail/market-detail.module').then( m => m.MarketDetailPageModule)
       },
       {
         path: '',
