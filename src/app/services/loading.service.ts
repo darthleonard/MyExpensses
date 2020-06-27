@@ -11,7 +11,9 @@ export class LoadingService {
 
   async present() {
     this.isLoading = true;
-    return await this.loadingController.create()
+    return await this.loadingController.create({
+      message: 'Please wait...',
+      })
       .then(a => {
         a.present().then(() => {
           if (!this.isLoading) {
@@ -22,13 +24,10 @@ export class LoadingService {
   }
 
   async dismiss() {
+    if (!this.isLoading) {
+      return;
+    }
     this.isLoading = false;
-    setTimeout(() => {
-      return this.dismissLoading();
-    }, 10);
-  }
-
-  private async dismissLoading() {
     return await this.loadingController.dismiss();
   }
 }
