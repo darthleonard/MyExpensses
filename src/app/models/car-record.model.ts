@@ -1,7 +1,7 @@
 import { BaseRecord } from './base-record.model';
 
 export class CarRecord extends BaseRecord {
-    ConsumptionDate = new Date();
+    ConsumptionDate = new Date().toISOString();
     Price: number;
     Quantity: number;
     Distance: number;
