@@ -17,8 +17,7 @@
   </div>
 
   <ion-list *ngIf="records.length > 0">
-    <ion-item-sliding *ngFor="let record of records">
-      <ion-item>
+      <ion-item *ngFor="let record of records" [routerLink]="['./car-detail', {record: stringify(record)}]">
         <ion-grid>
           <ion-row>
             <ion-col>
@@ -34,12 +33,7 @@
             </ion-col>
           </ion-row>
         </ion-grid>
-       
       </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option [routerLink]="['./car-detail', {record: stringify(record)}]">Edit</ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
