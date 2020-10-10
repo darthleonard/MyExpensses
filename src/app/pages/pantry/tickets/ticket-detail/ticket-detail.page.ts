@@ -47,13 +47,10 @@ export class TicketDetailPage extends BaseDetailPage<TicketRecord> {
       buttons: [
         {
           text: 'Cancel',
-          role: 'cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
+          role: 'cancel'
         },
         {
-          text: 'Add',
+          text: 'Save',
           handler: data => {
             const product = new BasicProductRecord(data.name, data.price);
             this.record.Products.unshift(product);
