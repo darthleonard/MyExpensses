@@ -6,6 +6,7 @@ export class ProductRecord extends BaseRecord {
 
     load(json: string) {
         const data = JSON.parse(json);
+        this.Id = data.Id;
         this.Name = data.Name;
         this.Brand = data.Brand;
     }
