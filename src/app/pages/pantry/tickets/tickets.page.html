@@ -18,7 +18,22 @@
   
   <ion-list *ngIf="records.length > 0">
       <ion-item *ngFor="let record of records" [routerLink]="['./ticket-detail', {record: stringify(record)}]">
-        <ion-label>Quantity: {{ record.Id }}</ion-label>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-label>{{ record.PurchaseDate | date }}</ion-label>
+            </ion-col>
+            <ion-col>
+              <ion-label class="ion-text-right">$ {{ record.Total }}</ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-label>Total Products: {{ record.Products.length }}</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
       </ion-item>
   </ion-list>
 

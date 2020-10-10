@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Storage } from '@ionic/storage';
+import { Location } from '@angular/common';
+import { BaseDetailPage } from 'src/app/pages/base/base-detail.page';
+import { TicketRecord } from 'src/app/models/ticket-record.model';
 
 @Component({
   selector: 'app-ticket-detail',
   templateUrl: './ticket-detail.page.html',
   styleUrls: ['./ticket-detail.page.scss'],
 })
-export class TicketDetailPage implements OnInit {
+export class TicketDetailPage extends BaseDetailPage {
 
-  constructor() { }
+  constructor(public activatedRoute: ActivatedRoute,
+              public storage: Storage,
+              public location: Location) {
+    super(activatedRoute, storage, location);
+  }
 
-  ngOnInit() {
+  recordInit() {
+    this.record = new TicketRecord();
   }
 
 }
