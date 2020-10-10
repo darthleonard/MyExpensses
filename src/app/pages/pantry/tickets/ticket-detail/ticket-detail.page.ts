@@ -34,6 +34,7 @@ export class TicketDetailPage extends BaseDetailPage<TicketRecord> {
   deleteProduct(product: BasicProductRecord) {
     const idx = this.record.Products.indexOf(product);
     if (idx > -1) {
+      this.record.Total -= product.Price;
       this.record.Products.splice(idx, 1);
     }
   }
