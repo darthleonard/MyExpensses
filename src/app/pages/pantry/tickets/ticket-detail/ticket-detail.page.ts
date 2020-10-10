@@ -25,39 +25,70 @@ export class TicketDetailPage extends BaseDetailPage<TicketRecord> {
     this.record = new TicketRecord();
   }
 
-  addProduct() {
-    this.presentAlert();
+  addProduct(name: string, price: number, isNew?: boolean) {
+    const product = new BasicProductRecord(name, price);
+    this.record.Products.unshift(product);
+    this.record.Total += price;
   }
 
-  async presentAlert() {
+  deleteProduct(product: BasicProductRecord) {
+    const idx = this.record.Products.indexOf(product);
+    if (idx > -1) {
+      this.record.Products.splice(idx, 1);
+    }
+  }
+
+  async showProductAlert(product?: BasicProductRecord) {
+    let p_buttons = [
+      {
+        text: 'Cancel',
+        role: 'cancel'
+      },
+      {
+        text: 'Save',
+        handler: data => {
+          const price = parseFloat(data.price);
+          const name = data.name;
+          if (isNaN(price) || price < 0 || name.length < 1) {
+            return false;
+          }
+          if (product === undefined ) {
+            this.addProduct(name, price);
+          } else {
+            product.Name = name;
+            product.Price = price;
+          }
+          return true;
+        }
+      },
+      {
+        text: 'delete',
+        handler: data => {
+          this.deleteProduct(product);
+        }
+      },
+    ];
+    if (product === undefined) {
+      p_buttons.pop();
+    }
+
     const alert = await this.alertController.create({
       header: 'Product',
       inputs: [
         {
           name: 'name',
-          placeholder: 'Name'
+          placeholder: 'Name',
+          value: product === undefined ? undefined : product.Name
         },
         {
           name: 'price',
           placeholder: 'Price',
           type: 'number',
-          min: -5
+          min: 0,
+          value: product === undefined ? undefined : product.Price
         }
       ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        },
-        {
-          text: 'Save',
-          handler: data => {
-            const product = new BasicProductRecord(data.name, data.price);
-            this.record.Products.unshift(product);
-            this.record.Total += parseInt(data.price, 10);
-          }
-        }
-      ]
+      buttons: p_buttons
     });
 
     await alert.present();

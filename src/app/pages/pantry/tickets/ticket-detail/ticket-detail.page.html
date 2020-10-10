@@ -18,12 +18,12 @@
       <ion-label>
         Products
       </ion-label>
-      <ion-button slot="end" color="success" expand="block" (click)="addProduct()">
+      <ion-button slot="end" color="success" expand="block" (click)="showProductAlert()">
         <ion-icon name="add-circle-outline"></ion-icon>
       </ion-button>
     </ion-item-divider>
   
-    <ion-item *ngFor="let product of record.Products">
+    <ion-item *ngFor="let product of record.Products" (click)="showProductAlert(product)">
       <ion-label slot="start">{{ product.Name }}</ion-label>
       <ion-label slot="end">$ {{ product.Price }}</ion-label>
     </ion-item>
