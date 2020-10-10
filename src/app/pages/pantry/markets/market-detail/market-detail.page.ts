@@ -10,7 +10,7 @@ import { MarketRecord } from 'src/app/models/market-record.model';
   templateUrl: './market-detail.page.html',
   styleUrls: ['./market-detail.page.scss'],
 })
-export class MarketDetailPage  extends BaseDetailPage {
+export class MarketDetailPage  extends BaseDetailPage<MarketRecord> {
 
   constructor(public activatedRoute: ActivatedRoute,
               public storage: Storage,

@@ -10,7 +10,7 @@ import { BaseDetailPage } from 'src/app/pages/base/base-detail.page';
   templateUrl: './product-detail.page.html',
   styleUrls: ['./product-detail.page.scss'],
 })
-export class ProductDetailPage extends BaseDetailPage {
+export class ProductDetailPage extends BaseDetailPage<ProductRecord> {
 
   constructor(public activatedRoute: ActivatedRoute,
               public storage: Storage,

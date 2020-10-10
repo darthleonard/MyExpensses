@@ -10,7 +10,7 @@ import { BaseDetailPage } from '../../base/base-detail.page';
   templateUrl: './car-detail.page.html',
   styleUrls: ['./car-detail.page.scss'],
 })
-export class CarDetailPage extends BaseDetailPage {
+export class CarDetailPage extends BaseDetailPage<CarRecord> {
 
   constructor(
     public activatedRoute: ActivatedRoute,

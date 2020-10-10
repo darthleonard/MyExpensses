@@ -1,9 +1,10 @@
 import { ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { Location } from '@angular/common';
+import { BaseRecord } from 'src/app/models/base-record.model';
 
-export abstract class BaseDetailPage {
-  record: any;
+export abstract class BaseDetailPage<T extends BaseRecord> {
+  record: T;
   isNew: boolean;
 
   constructor(public activatedRoute: ActivatedRoute,
