@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>House {{ record.Period | date }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Period</ion-label>
+    <ion-datetime display-format="DD/MMMM/YYYY" [(ngModel)]="record.Period" name="Period"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Rent</ion-label>
+    <ion-input type="number" [(ngModel)]="record.Rent" name="Rent"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Paid Tv</ion-label>
+    <ion-input type="number" [(ngModel)]="record.PaidTv" name="PaidTv"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Water service</ion-label>
+    <ion-input type="number" [(ngModel)]="record.Water" name="Water"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Electricity service</ion-label>
+    <ion-input type="number" [(ngModel)]="record.Electricity" name="Electricity"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Gas service</ion-label>
+    <ion-input type="number" [(ngModel)]="record.Gas" name="Gas"></ion-input>
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngIf="!isNew">
+        <ion-button color="danger" expand="block" (click)="delete()">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="success" expand="block" (click)="save()">
+          <ion-icon name="save-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
