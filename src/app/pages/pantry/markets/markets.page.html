@@ -18,7 +18,7 @@
   
   <ion-list *ngIf="records.length > 0">
       <ion-item *ngFor="let record of records" [routerLink]="['./market-detail', {record: stringify(record)}]">
-        <ion-label>Quantity: {{ record.Id }}</ion-label>
+        <ion-label>{{ record.Name }}</ion-label>
       </ion-item>
   </ion-list>
 
