@@ -40,7 +40,8 @@ export class TicketDetailPage extends BaseDetailPage<TicketRecord> {
         {
           name: 'price',
           placeholder: 'Price',
-          type: 'number'
+          type: 'number',
+          min: -5
         }
       ],
       buttons: [
@@ -56,7 +57,7 @@ export class TicketDetailPage extends BaseDetailPage<TicketRecord> {
           handler: data => {
             const product = new BasicProductRecord(data.name, data.price);
             this.record.Products.unshift(product);
-            this.record.Total += data.price;
+            this.record.Total += parseInt(data.price, 10);
           }
         }
       ]
