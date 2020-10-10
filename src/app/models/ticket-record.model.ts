@@ -1,10 +1,10 @@
 import { BaseRecord } from './base-record.model';
-import { ProductRecord } from './product-record.model';
+import { BasicProductRecord } from './basic-product-model';
 
 export class TicketRecord extends BaseRecord {
     PurchaseDate = new Date().toLocaleDateString();
-    Products: ProductRecord[] = [];
-    Total: number;
+    Products: BasicProductRecord[] = [];
+    Total = 0;
 
     load(json: string) {
         const data = JSON.parse(json);

@@ -12,6 +12,23 @@
     <ion-label position="floating">Date</ion-label>
     <ion-datetime display-format="DD/MMMM/YYYY" [(ngModel)]="record.PurchaseDate" name="PurchaseDate"></ion-datetime>
   </ion-item>
+
+  <ion-list>
+    <ion-item-divider>
+      <ion-label>
+        Products
+      </ion-label>
+      <ion-button slot="end" color="success" expand="block" (click)="addProduct()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-item-divider>
+  
+    <ion-item *ngFor="let product of record.Products">
+      <ion-label slot="start">{{ product.Name }}</ion-label>
+      <ion-label slot="end">$ {{ product.Price }}</ion-label>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
 
 <ion-footer>
