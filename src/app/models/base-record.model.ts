@@ -1,6 +1,6 @@
 import { Storage } from '@ionic/storage';
 
-export class BaseRecord {
+export abstract class BaseRecord {
     Id: string;
     CreationDate: Date;
     LastModDate: Date;
@@ -35,4 +35,6 @@ export class BaseRecord {
         this.LastModDate = new Date();
         storage.set(this.Id.toString(), JSON.stringify(this));
     }
+
+    abstract load(json: string);
 }
