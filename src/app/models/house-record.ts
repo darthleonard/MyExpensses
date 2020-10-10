@@ -1,7 +1,7 @@
 import { BaseRecord } from './base-record.model';
 
 export class HouseRecord extends BaseRecord {
-    Period = new Date();
+    Period = new Date().toLocaleDateString();
     Rent: number;
     PaidTv: number;
     Water: number;
