@@ -28,19 +28,30 @@ export class TicketDetailPage extends BaseDetailPage<TicketRecord> {
   addProduct(name: string, price: number, isNew?: boolean) {
     const product = new BasicProductRecord(name, price);
     this.record.Products.unshift(product);
-    this.record.Total += price;
+    this.updateTotal();
   }
 
   deleteProduct(product: BasicProductRecord) {
     const idx = this.record.Products.indexOf(product);
     if (idx > -1) {
-      this.record.Total -= product.Price;
       this.record.Products.splice(idx, 1);
+      this.updateTotal();
     }
   }
 
+  checkProduct(product: BasicProductRecord) {
+    product.Bought = !product.Bought;
+  }
+
+  updateTotal() {
+    this.record.Total = 0;
+    this.record.Products.filter(p => p.Bought).forEach(p => {
+      this.record.Total += p.Price;
+    });
+  }
+
   async showProductAlert(product?: BasicProductRecord) {
-    let p_buttons = [
+    const alertButtons = [
       {
         text: 'Cancel',
         role: 'cancel'
@@ -48,16 +59,17 @@ export class TicketDetailPage extends BaseDetailPage<TicketRecord> {
       {
         text: 'Save',
         handler: data => {
-          const price = parseFloat(data.price);
+          const price = data.price.length === 0 ? 0 : parseFloat(data.price);
           const name = data.name;
           if (isNaN(price) || price < 0 || name.length < 1) {
             return false;
           }
-          if (product === undefined ) {
+          if (product === undefined) {
             this.addProduct(name, price);
           } else {
             product.Name = name;
             product.Price = price;
+            this.updateTotal();
           }
           return true;
         }
@@ -70,7 +82,7 @@ export class TicketDetailPage extends BaseDetailPage<TicketRecord> {
       },
     ];
     if (product === undefined) {
-      p_buttons.pop();
+      alertButtons.pop();
     }
 
     const alert = await this.alertController.create({
@@ -89,7 +101,7 @@ export class TicketDetailPage extends BaseDetailPage<TicketRecord> {
           value: product === undefined ? undefined : product.Price
         }
       ],
-      buttons: p_buttons
+      buttons: alertButtons
     });
 
     await alert.present();

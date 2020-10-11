@@ -10,7 +10,7 @@
 <ion-content>
   <ion-item>
     <ion-label position="floating">Date</ion-label>
-    <ion-datetime display-format="DD/MMMM/YYYY" [(ngModel)]="record.PurchaseDate" name="PurchaseDate"></ion-datetime>
+    <ion-datetime display-format="DD/MMMM/YYYY" [(ngModel)]="record.PurchaseDate"></ion-datetime>
   </ion-item>
 
   <ion-list>
@@ -23,8 +23,9 @@
       </ion-button>
     </ion-item-divider>
   
-    <ion-item *ngFor="let product of record.Products" (click)="showProductAlert(product)">
-      <ion-label slot="start">{{ product.Name }}</ion-label>
+    <ion-item *ngFor="let product of record.Products">
+      <ion-toggle slot="start" [(ngModel)]="product.Bought" (ionChange)="updateTotal()"></ion-toggle>
+      <ion-label slot="start" (click)="showProductAlert(product)">{{ product.Name }}</ion-label>
       <ion-label slot="end">$ {{ product.Price }}</ion-label>
     </ion-item>
   </ion-list>
