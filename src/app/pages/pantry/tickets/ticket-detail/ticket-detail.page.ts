@@ -39,15 +39,13 @@ export class TicketDetailPage extends BaseDetailPage<TicketRecord> {
     }
   }
 
-  checkProduct(product: BasicProductRecord) {
-    product.Bought = !product.Bought;
-  }
-
   updateTotal() {
     this.record.Total = 0;
-    this.record.Products.filter(p => p.Bought).forEach(p => {
-      this.record.Total += (p.Price * p.Quantity);
-    });
+    this.record.Products
+      .filter(p => p.Bought)
+      .forEach(p => {
+        this.record.Total += p.Price * p.Quantity;
+      });
   }
 
   async showProductAlert(product?: BasicProductRecord) {
@@ -115,5 +113,4 @@ export class TicketDetailPage extends BaseDetailPage<TicketRecord> {
 
     await alert.present();
   }
-
 }
