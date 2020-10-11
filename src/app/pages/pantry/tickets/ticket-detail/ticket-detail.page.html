@@ -25,7 +25,10 @@
   
     <ion-item *ngFor="let product of record.Products">
       <ion-toggle slot="start" [(ngModel)]="product.Bought" (ionChange)="updateTotal()"></ion-toggle>
-      <ion-label (click)="showProductAlert(product)">{{ product.Name }}</ion-label>
+      <ion-label (click)="showProductAlert(product)">
+        {{ product.Name }}
+        <small><br>Quantiy: {{ product.Quantity }}</small>
+      </ion-label>
       <ion-button fill="outline" shape="round" color-danger slot="end">$ {{ product.Price }}</ion-button>
     </ion-item>
   </ion-list>

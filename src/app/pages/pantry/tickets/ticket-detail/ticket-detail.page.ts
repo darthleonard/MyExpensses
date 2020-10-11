@@ -25,8 +25,8 @@ export class TicketDetailPage extends BaseDetailPage<TicketRecord> {
     this.record = new TicketRecord();
   }
 
-  addProduct(name: string, price: number, isNew?: boolean) {
-    const product = new BasicProductRecord(name, price);
+  addProduct(name: string, price: number, quantity: number) {
+    const product = new BasicProductRecord(name, price, quantity);
     this.record.Products.unshift(product);
     this.updateTotal();
   }
@@ -46,7 +46,7 @@ export class TicketDetailPage extends BaseDetailPage<TicketRecord> {
   updateTotal() {
     this.record.Total = 0;
     this.record.Products.filter(p => p.Bought).forEach(p => {
-      this.record.Total += p.Price;
+      this.record.Total += (p.Price * p.Quantity);
     });
   }
 
@@ -60,15 +60,17 @@ export class TicketDetailPage extends BaseDetailPage<TicketRecord> {
         text: 'Save',
         handler: data => {
           const price = data.price.length === 0 ? 0 : parseFloat(data.price);
+          const quantity = data.quantity.length === 0 ? 1 : parseInt(data.quantity, 10);
           const name = data.name;
-          if (isNaN(price) || price < 0 || name.length < 1) {
+          if (isNaN(price) || isNaN(quantity) || price < 0 || quantity < 1 || name.length < 1) {
             return false;
           }
           if (product === undefined) {
-            this.addProduct(name, price);
+            this.addProduct(name, price, quantity);
           } else {
             product.Name = name;
             product.Price = price;
+            product.Quantity = quantity;
             this.updateTotal();
           }
           return true;
@@ -99,6 +101,13 @@ export class TicketDetailPage extends BaseDetailPage<TicketRecord> {
           type: 'number',
           min: 0,
           value: product === undefined ? undefined : product.Price
+        },
+        {
+          name: 'quantity',
+          placeholder: 'Quantity',
+          type: 'number',
+          min: 1,
+          value: product === undefined ? undefined : product.Quantity
         }
       ],
       buttons: alertButtons
